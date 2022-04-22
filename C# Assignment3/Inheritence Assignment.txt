@@ -1,0 +1,126 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp4
+{
+    class Employee
+    {
+        public int empId;
+        public string empName;
+        public double salary;
+        public double TA;
+        public double DA;
+        public double PF;
+        public double grossSalary;
+        public double netSalary;
+
+        public Employee(int Id, string Name, double sal)
+        {
+            empId = Id;
+            empName = Name;
+            salary = sal;
+
+            if (salary < 15000)
+            {
+                TA = salary * 15 / 100;
+                DA = salary * 10 / 100;
+                grossSalary = salary + TA + DA;
+            }
+
+            else if (salary < 20000)
+            {
+                TA = salary * 20 / 100;
+                DA = salary * 30 / 100;
+                grossSalary = salary + TA + DA;
+            }
+
+            else
+            {
+                TA = salary * 25 / 100;
+                DA = salary * 35 / 100;
+                grossSalary = salary + TA + DA;
+            }
+        }
+
+        public virtual void GrossSalary()
+        {
+
+            Console.WriteLine(grossSalary);
+
+        }
+
+        public virtual void CalculateSalary()
+        {
+            PF = grossSalary * 10 / 100;
+            netSalary = grossSalary - PF;
+        }
+
+        class Manager : Employee
+        {
+            private double petrolAllowances;
+            private double foodAllowances;
+            private double otherAllowances;
+
+            public Manager(int Id, string Name, double sal):base(Id, Name, sal)
+            {
+                petrolAllowances = salary * 8 / 100;
+                foodAllowances = salary * 13 / 100;
+                otherAllowances = salary * 3 / 100;
+            }
+
+            public override void GrossSalary()
+            {
+                grossSalary = (grossSalary + petrolAllowances + foodAllowances + otherAllowances);
+                Console.WriteLine("Manager's GrossSalary is: "+grossSalary);
+            }
+
+            public override void CalculateSalary()
+            {
+                PF = grossSalary * 10 / 100;
+                netSalary = grossSalary - PF;
+                Console.WriteLine(netSalary);
+            }
+        }
+
+        class MarketingExecutive : Employee
+        {
+            private double kilometerTravel;
+            private double tourAllowances;
+            private double telephoneAllowances = 1000;
+            public double kmTravel;
+
+            public MarketingExecutive(int Id, string Name, double sal, double kmTravel) : base(Id, Name, sal)
+            {
+                kilometerTravel = kmTravel;
+                tourAllowances = kilometerTravel * 5;
+                telephoneAllowances = 1000;
+            }
+
+            public override void GrossSalary()
+            {
+                grossSalary = (grossSalary + tourAllowances + telephoneAllowances);
+                Console.WriteLine("MarketingExecutive's GrossSalary: " + grossSalary);
+            }
+
+            public override void CalculateSalary()
+            {
+                PF = grossSalary * 10 / 100;
+                netSalary = grossSalary - PF;
+                Console.WriteLine(netSalary);
+            }
+        }
+
+       
+            static void Main(string[] args)
+            {
+                Manager Mgr = new Manager(1, "Rachel", 10000);
+                Mgr.GrossSalary();
+                MarketingExecutive Me = new MarketingExecutive(2, "Lilly", 12000,256);
+                Me.GrossSalary();
+                
+            }
+        }
+    }
