@@ -1,0 +1,51 @@
+// Online C# Editor for free
+// Write, Edit and Run your C# code using C# Online Compiler
+    
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CSharpAssignment
+{
+    class StackExe : Exception
+{
+       public StackExe(String Message) : base(Message)
+       {
+             //Message for empty exception
+        }
+}
+    public class Excep
+    {
+        public static void E()
+        { 
+           string[] stringArray = new string[3];
+       	   Stack<string> Link= new Stack<string>();
+      	   Link.Push("website name");
+       	   Link.Push("ip address");
+           Link.Push("type of site");
+     
+           Console.WriteLine("{0},{1},{2}", Link.Pop(), Link.Pop(), Link.Pop());
+            if(Link.Count==00)
+               {
+                    throw new StackExe("Stack is Empty");
+               }
+        }
+  
+    }
+        public class CustomStackExe
+        {
+           public static void Main(string[] args)
+           {
+                 try
+                    {
+                          Excep.E();
+                     }
+                 catch (StackExe CE)
+                     {
+                           Console.WriteLine(CE.Message);
+                      }
+                 Console.ReadKey();
+            }
+        }    
+}

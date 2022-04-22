@@ -1,0 +1,23 @@
+using System;
+using System.Collections.Generic;
+
+public class Stack
+{
+    public static void Main()
+    {
+        int[] intArray = new int[3];
+        Stack<int> Link= new Stack<int>();
+        Link.Push(5);
+        Link.Push(6);
+        Link.Push(7);
+        Console.Write("Number of elements in Stack: {0}", Link.Count);
+        foreach (var item in Link)
+        Console.Write(item + "\n");
+        
+        Console.WriteLine(”The current top element in stack is “ +Link.Peek()); 
+        Link.Pop();
+        Console.WriteLine("Number of elements in Stack: {0}", Link.Count);
+                       
+        Console.Write("Number of elements in Stack: {0}", Link.Count);
+    }
+}
